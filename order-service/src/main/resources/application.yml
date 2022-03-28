@@ -1,0 +1,42 @@
+server:
+  port: 0
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/mydb
+    driver-class-name: org.mariadb.jdbc.Driver
+    password: test1357
+    username: root
+
+  application:
+    name: order-service
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defalutZone: http://localhost:8761/eureka
+
+greeting:
+  message: welcome very wlecome order-service
+logging:
+  level:
+    com.example.orderservice: DEBUG
+
+
